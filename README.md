@@ -18,5 +18,6 @@ Aims to provide security, privacy, and authentication
 
 
 ### Sources:
+https://www.hass.de/content/setup-microsoft-windows-or-iis-ssl-perfect-forward-secrecy-and-tls-12
 https://nvd.nist.gov/vuln/detail/CVE-2024-6387
 https://blog.qualys.com/vulnerabilities-threat-research/2024/07/01/regresshion-remote-unauthenticated-code-execution-vulnerability-in-openssh-server
