@@ -12,7 +12,7 @@ $os = Get-WmiObject -class Win32_OperatingSystem
 # Windows XP with IE6/7. Without SSL 3.0 enabled, there is no protocol available
 # for these people to fall back. Safer shopping certifications may require that
 # you disable SSLv3.
-#
+
 # Disable SSL 3.0 (PCI Compliance) and enable "Poodle" protection
 
 # Disable TLS 1.0 for client and server SCHANNEL communications
@@ -59,6 +59,7 @@ Foreach ($secureCipher in $secureCiphers) {
 $secureHashes = @(
 
 )
+
 Foreach ($secureHash in $secureHashes) {
   $key = (Get-Item HKLM:\).OpenSubKey('SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Hashes', $true).CreateSubKey($secureHash)
   New-ItemProperty -path "HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Hashes\$secureHash" -name 'Enabled' -value '0xffffffff' -PropertyType 'DWord' -Force | Out-Null
@@ -70,6 +71,7 @@ Foreach ($secureHash in $secureHashes) {
 New-Item 'HKLM:SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\KeyExchangeAlgorithms' -Force | Out-Null
 $secureKeyExchangeAlgorithms = @(
 )
+
 Foreach ($secureKeyExchangeAlgorithm in $secureKeyExchangeAlgorithms) {
 }
 
@@ -79,6 +81,7 @@ Foreach ($secureKeyExchangeAlgorithm in $secureKeyExchangeAlgorithms) {
 # https://support.microsoft.com/en-us/help/3174644/microsoft-security-advisory-updated-support-for-diffie-hellman-key-exc
 
 # Set cipher suites order as secure as possible (Enables Perfect Forward Secrecy).
+
 if ([System.Version]$os.Version -lt [System.Version]'10.0') {
   Write-Host 'Use cipher suites order for Windows 2008/2008R2/2012/2012R2.'
 } elseif ([System.Version]$os.Version -lt [System.Version]'10.0.20348') {
@@ -86,12 +89,14 @@ if ([System.Version]$os.Version -lt [System.Version]'10.0') {
 } else {
   Write-Host 'Use cipher suites order for Windows 11/2022 and later.'
 }
+
 # One user reported this key does not exists on Windows 2012R2. Cannot repro myself on a brand new Windows 2012R2 core machine. Adding this just to be save.
 
 # Exchange Server TLS guidance Part 2: Enabling TLS 1.2+ and Identifying Clients Not Using It
 # https://blogs.technet.microsoft.com/exchange/2018/04/02/exchange-server-tls-guidance-part-2-enabling-tls-1-2-and-identifying-clients-not-using-it/
 # New IIS functionality to help identify weak TLS usage
 # https://cloudblogs.microsoft.com/microsoftsecure/2017/09/07/new-iis-functionality-to-help-identify-weak-tls-usage/
+
 if (Test-Path 'HKLM:\SOFTWARE\Wow6432Node') {
 }
 
@@ -108,6 +113,7 @@ if (Test-Path 'HKLM:\SOFTWARE\Wow6432Node') {
 # https://support.microsoft.com/en-us/help/3140245/update-to-enable-tls-1-1-and-tls-1-2-as-a-default-secure-protocols-in
 
 # Verify if hotfix KB3140245 is installed.
+
 if ([System.Version]$file_version_winhttp_dll -lt [System.Version]"6.1.7601.23375" -or [System.Version]$file_version_webio_dll -lt [System.Version]"6.1.7601.23375") {
 } else {
 
