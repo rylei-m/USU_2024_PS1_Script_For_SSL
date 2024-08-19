@@ -2,24 +2,24 @@
 # $os = Get-CimInstance -Class Win32_OperatingSystem
 $os = Get-WmiObject -class Win32_OperatingSystem
 
-# Disable Multi-Protocol Unified Hello
+# TODO: Disable Multi-Protocol Unified Hello
 
-# Disable PCT 1.0
+# TODO: Disable PCT 1.0
 
-# Disable SSL 2.0 (PCI Compliance)
+# TODO: Disable SSL 2.0 (PCI Compliance)
 
 # NOTE: If you disable SSL 3.0 the you may lock out some people still using
 # Windows XP with IE6/7. Without SSL 3.0 enabled, there is no protocol available
 # for these people to fall back. Safer shopping certifications may require that
 # you disable SSLv3.
 
-# Disable SSL 3.0 (PCI Compliance) and enable "Poodle" protection
+# TODO: Disable SSL 3.0 (PCI Compliance) and enable "Poodle" protection
 
-# Disable TLS 1.0 for client and server SCHANNEL communications
+# TODO: Disable TLS 1.0 for client and server SCHANNEL communications
 
-# Add and Disable TLS 1.1 for client and server SCHANNEL communications
+# TODO: Add and Disable TLS 1.1 for client and server SCHANNEL communications
 
-# Add and Enable TLS 1.2 for client and server SCHANNEL communications
+# TODO: Add and Enable TLS 1.2 for client and server SCHANNEL communications
 
 if ([System.Version]$os.Version -lt [System.Version]'10.0.20348') {
   # Microsoft integrated TLS 1.3 as a preview in Windows 10, but this code seems to be unstable and is causing malfunctions.
@@ -36,16 +36,16 @@ if ([System.Version]$os.Version -lt [System.Version]'10.0.20348') {
   Write-Host 'TLS 1.3 has been enabled for Windows 11/2022 and later.'
 }
 
-# Re-create the ciphers key.
+# TODO: Re-create the ciphers key.
 
-# Disable insecure/weak ciphers.
+# TODO: Disable insecure/weak ciphers.
 $insecureCiphers = @(
 )
 
 Foreach ($insecureCipher in $insecureCiphers) {
 }
 
-# Enable new secure ciphers.
+# TODO: Enable new secure ciphers.
 # - RC4: It is recommended to disable RC4, but you may lock out WinXP/IE8 if you enforce this. This is a requirement for FIPS 140-2.
 # - 3DES: It is recommended to disable these in near future. This is the last cipher supported by Windows XP.
 # - Windows Vista and before 'Triple DES 168' was named 'Triple DES 168/168' per https://support.microsoft.com/en-us/kb/245030
@@ -54,7 +54,7 @@ $secureCiphers = @(
 Foreach ($secureCipher in $secureCiphers) {
 }
 
-# Set hashes configuration.
+# TODO: Set hashes configuration.
 
 $secureHashes = @(
 
@@ -67,7 +67,7 @@ Foreach ($secureHash in $secureHashes) {
   Write-Host "Hash $secureHash has been enabled."
 }
 
-# Set KeyExchangeAlgorithms configuration.
+# TODO: Set KeyExchangeAlgorithms configuration.
 New-Item 'HKLM:SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\KeyExchangeAlgorithms' -Force | Out-Null
 $secureKeyExchangeAlgorithms = @(
 )
@@ -80,7 +80,7 @@ Foreach ($secureKeyExchangeAlgorithm in $secureKeyExchangeAlgorithms) {
 
 # https://support.microsoft.com/en-us/help/3174644/microsoft-security-advisory-updated-support-for-diffie-hellman-key-exc
 
-# Set cipher suites order as secure as possible (Enables Perfect Forward Secrecy).
+# TODO: Set cipher suites order as secure as possible (Enables Perfect Forward Secrecy).
 
 if ([System.Version]$os.Version -lt [System.Version]'10.0') {
   Write-Host 'Use cipher suites order for Windows 2008/2008R2/2012/2012R2.'
@@ -109,10 +109,10 @@ if (Test-Path 'HKLM:\SOFTWARE\Wow6432Node') {
 # 0x00002000                             8192  Enable TLS 1.3 by default
 
 
-# Update to enable TLS 1.2+ as a default secure protocols in WinHTTP in Windows
+# TODO: Update to enable TLS 1.2+ as a default secure protocols in WinHTTP in Windows
 # https://support.microsoft.com/en-us/help/3140245/update-to-enable-tls-1-1-and-tls-1-2-as-a-default-secure-protocols-in
 
-# Verify if hotfix KB3140245 is installed.
+# TODO: Verify if hotfix KB3140245 is installed.
 
 if ([System.Version]$file_version_winhttp_dll -lt [System.Version]"6.1.7601.23375" -or [System.Version]$file_version_webio_dll -lt [System.Version]"6.1.7601.23375") {
 } else {
