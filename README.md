@@ -1,5 +1,5 @@
 # PS1 Script for SSH
-### Powershell Script For Disabling SSL 2.0 and 3.0 and Enabling TLS
+### Powershell Script For Disabling SSL 2.0 and 3.0 and Enabling TLS 1.2
 
 Script created to disable SSL Version 2.0 and 3.0 and Enable the most viable version of TLS. 
 
@@ -15,6 +15,9 @@ Open SSL 2.0 and 3.0 are affected by several cryptographic flaws that can become
 ### Transport Layer Security (TLS)
 TLS is a cryptographic protocol designed to provide communication security over a computer network. 
 Aims to provide security, privacy, and authentication
+
+About TLS 1.2:
+-
 
 
 ### Sources:
