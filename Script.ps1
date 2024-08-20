@@ -1,6 +1,9 @@
 # Win2012R2 and higher may use 'Get-CimInstance -Class Win32_OperatingSystem' as 'Get-WmiObject' is deprecated in Powershell 6.2+. Win2008R2 does not support 'Get-CimInstance'.
-# $os = Get-CimInstance -Class Win32_OperatingSystem
-$os = Get-WmiObject -class Win32_OperatingSystem
+try {
+  $os = Get-CimInstance -Class Win32_OperatingSystem
+} catch {
+  $os = Get-WmiObject -class Win32_OperatingSystem
+}
 
 # TODO: Disable Multi-Protocol Unified Hello
 
