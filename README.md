@@ -16,9 +16,13 @@ Open SSL 2.0 and 3.0 are affected by several cryptographic flaws that can become
 TLS is a cryptographic protocol designed to provide communication security over a computer network. 
 Aims to provide security, privacy, and authentication
 
-About TLS 1.2:
+### About TLS 1.2
+
 -
 
+### Unified Hello Removal
+Unified hello is a message formater that came out with SSL 2.0. With the removal of SSH 2.0 it is no longer necessary and is being removed for storage space optimization. 
+https://security.stackexchange.com/questions/59460/what-is-multi-protocol-unified-hello-and-what-are-the-impacts-of-disabling-ena
 
 ### Sources:
 https://www.hass.de/content/setup-microsoft-windows-or-iis-ssl-perfect-forward-secrecy-and-tls-12

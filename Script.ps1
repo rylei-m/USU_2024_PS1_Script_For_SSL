@@ -6,6 +6,8 @@ try {
 }
 
 # TODO: Disable Multi-Protocol Unified Hello
+Set-ItemProperty HKLM:\SOFTWARE\Policies\Microsoft\Windows\System -Name "AllowDomainPINLogon" -Value 0
+Set-ItemProperty HKLM:\SOFTWARE\Microsoft\PolicyManager\current\device\Settings -Name "AllowSignInOptions" -Value 0
 
 # TODO: Disable PCT 1.0
 
