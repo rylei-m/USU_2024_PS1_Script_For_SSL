@@ -46,6 +46,20 @@ Private Communications Technology (PTC) 1.0 is a protocol developed by Microsoft
 
 https://en.wikipedia.org/wiki/Private_Communications_Technology
 
+### Insecure Cipher Removals
+- RC4: A bulk cipher listed known for its weaknesses and vulnerabilities.
+- 3DES: A bulk cipher considered insecure due to its slow key generation and potential for brute-force attacks.
+- AES (without PFS): Although AES is generally considered secure, its use without Perfect Forward Secrecy (PFS) makes it vulnerable to attacks.
+- DES: A cipher withdrawn as a standard by the National Institute of Standards and Technology (NIST) in 2005 due to its short key-lengths and weaknesses.
+- Anonymous key exchanges: Generally vulnerable to Man-in-the-Middle (MitM) attacks.
+- CBC mode (without GCM): The CBC encryption algorithm, used in TLS 1.0, SSL 3.0, and lower, is vulnerable to plain-text attacks and the BEAST attack.
+- Export ciphers: Ciphers used for export from the United States in the 1990s, now considered insecure due to their weaknesses and vulnerabilities.
+
+https://zofixer.com/what-is-insecure-ssl-insecure-cipher-suite-vulnerability/
+https://developers.cloudflare.com/ssl/edge-certificates/additional-options/cipher-suites/recommendations/
+https://docs.datadoghq.com/code_analysis/static_analysis_rules/go-security/tls-cipher/
+https://pleasantpasswords.com/info/pleasant-password-server/f-best-practices/secure-and-harden-your-server-environment/encryption-protocols-and-ciphers
+
 ### Sources:
 https://blog.gigamon.com/2021/07/14/what-is-tls-1-2-and-why-should-you-still-care/
 https://www.hass.de/content/setup-microsoft-windows-or-iis-ssl-perfect-forward-secrecy-and-tls-12
