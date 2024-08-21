@@ -112,12 +112,19 @@ $secureCiphers = @(
   'Triple DES 168'
 )
 Foreach ($secureCipher in $secureCiphers) {
+  $key = (Get-Item HKLM:\).OpenSubKey('SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers', $true).CreateSubKey($secureCipher)
+  New-ItemProperty -path "HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers\$secureCipher" -name 'Enabled' -value '0xffffffff' -PropertyType 'DWord' -Force | Out-Null
+  $key.close()
+  Write-Host "Strong cipher $secureCipher has been enabled."
 }
 
 # TODO: Set hashes configuration.
 
 $secureHashes = @(
-
+  'SHA',
+  'SHA256',
+  'SHA384',
+  'SHA512'
 )
 
 Foreach ($secureHash in $secureHashes) {
