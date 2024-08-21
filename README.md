@@ -61,6 +61,8 @@ https://pleasantpasswords.com/info/pleasant-password-server/f-best-practices/sec
 
 ### Secure Ciphers Install
 - AES: Advanced Encryption Standard (AES) is a block cipher algorithm developed by the National Institute of Standards and Technology in 2001. It is considered as industry standard. 
+- RC4: Insecure Cipher but Required for Legacy Users
+- 3DES: Insecure Cipher, only supported Cipher by Windows XP
 
 https://www.kiteworks.com/risk-compliance-glossary/aes-256-encryption/
 https://www.geeksforgeeks.org/advanced-encryption-standard-aes/
