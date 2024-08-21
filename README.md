@@ -20,6 +20,7 @@ Aims to provide security, privacy, and authentication. For security and consiste
 
 ### About TLS 1.2
 TLS 1.2, released in 2008, was developed with security and performance in mind. It remained the industry standard until yje release of 1.3 in 2018. TLS 1.2 is still functioning. However, it contains obsolete cipher suites that are vulnerable to security attacks.
+
 https://blog.gigamon.com/2021/07/14/what-is-tls-1-2-and-why-should-you-still-care/
 
 ### About TLS 1.3
@@ -30,16 +31,19 @@ TLS 1.3, released in August 2018, has been widely adopted and is considered the 
 - Use of just 3 cipher suites with perfect forward secrecy (PFS), authenticated encryption, and modern algorithms
 - Improved privacy through minimal cleartext protocol bits on the wire
 - Content length hiding enabled by minimal cleartext protocol bits
+
 https://www.a10networks.com/glossary/key-differences-between-tls-1-2-and-tls-1-3/
 https://www.microsoft.com/en-us/security/blog/2020/08/20/taking-transport-layer-security-tls-to-the-next-level-with-tls-1-3/
 https://www.appviewx.com/blogs/why-is-tls-1-3-better-and-safer-than-tls-1-2/
 
 ### Unified Hello Removal
 Unified hello is a message formater that came out with SSL 2.0. With the removal of SSH 2.0 it is no longer necessary and is being removed for storage space optimization. 
+
 https://security.stackexchange.com/questions/59460/what-is-multi-protocol-unified-hello-and-what-are-the-impacts-of-disabling-ena
 
 ### PTC 1.0 Removal
 Private Communications Technology (PTC) 1.0 is a protocol developed by Microsoft in the mid-1990s to address security flaws in SSL 2.0. With the removal of SSL 2.0 PTC is no longer necessary.
+
 https://en.wikipedia.org/wiki/Private_Communications_Technology
 
 ### Sources:
