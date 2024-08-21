@@ -84,11 +84,11 @@ $insecureCiphers = @(
   'NULL',
   'RC2 128/128',
   'RC2 40/128',
-  'RC2 56/128',
+  'RC2 56/128'#,
   # 'RC4 40/128',
-  'RC4 56/128',
-  'RC4 64/128',
-  'RC4 128/128'#,
+  # 'RC4 56/128',
+  # 'RC4 64/128',
+  # 'RC4 128/128'#,
   # 'Triple DES 168'
 )
 Foreach ($insecureCipher in $insecureCiphers) {
@@ -106,6 +106,9 @@ $secureCiphers = @(
   'AES 128/128',
   'AES 256/256',
   'RC4 40/128',
+  'RC4 56/128',
+  'RC4 64/128',
+  'RC4 128/128',
   'Triple DES 168'
 )
 Foreach ($secureCipher in $secureCiphers) {
