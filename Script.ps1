@@ -80,8 +80,17 @@ if ([System.Version]$os.Version -lt [System.Version]'10.0.20348') {
 
 # TODO: Disable insecure/weak ciphers.
 $insecureCiphers = @(
+  'DES 56/56',
+  'NULL',
+  'RC2 128/128',
+  'RC2 40/128',
+  'RC2 56/128',
+  'RC4 40/128',
+  'RC4 56/128',
+  'RC4 64/128',
+  'RC4 128/128',
+  'Triple DES 168'
 )
-
 Foreach ($insecureCipher in $insecureCiphers) {
 }
 
