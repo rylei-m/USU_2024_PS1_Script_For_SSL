@@ -92,6 +92,10 @@ $insecureCiphers = @(
   'Triple DES 168'
 )
 Foreach ($insecureCipher in $insecureCiphers) {
+  $key = (Get-Item HKLM:\).OpenSubKey('SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers', $true).CreateSubKey($insecureCipher)
+  $key.SetValue('Enabled', 0, 'DWord')
+  $key.close()
+  Write-Host "Weak cipher $insecureCipher has been disabled."
 }
 
 # TODO: Enable new secure ciphers.
