@@ -67,6 +67,16 @@ https://pleasantpasswords.com/info/pleasant-password-server/f-best-practices/sec
 https://www.kiteworks.com/risk-compliance-glossary/aes-256-encryption/
 https://www.geeksforgeeks.org/advanced-encryption-standard-aes/
 
+### Secure Hashes
+Secure Hashes, also known as Cryptographic Hash Functions, are algorithms that take variable-length input data and produce fixed-length, unique digital message digests.
+- SHA-2: A family of hashes including SHA-224, SHA-256, SHA-384, and SHA-512. Considered Secure except against length extension attacks. 
+
+https://en.wikipedia.org/wiki/Cryptographic_hash_function
+https://brilliant.org/wiki/secure-hashing-algorithms/
+https://www.encryptionconsulting.com/education-center/what-is-sha/
+https://cryptobook.nakov.com/cryptographic-hash-functions/secure-hash-algorithms
+https://csrc.nist.gov/projects/hash-functions
+
 ### Sources:
 https://blog.gigamon.com/2021/07/14/what-is-tls-1-2-and-why-should-you-still-care/
 https://www.hass.de/content/setup-microsoft-windows-or-iis-ssl-perfect-forward-secrecy-and-tls-12
