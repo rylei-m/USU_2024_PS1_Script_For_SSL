@@ -78,18 +78,18 @@ if ([System.Version]$os.Version -lt [System.Version]'10.0.20348') {
 
 # TODO: Re-create the ciphers key.
 
-# TODO: Disable insecure/weak ciphers.
+# Disable insecure/weak ciphers.
 $insecureCiphers = @(
   'DES 56/56',
   'NULL',
   'RC2 128/128',
   'RC2 40/128',
   'RC2 56/128',
-  'RC4 40/128',
+  # 'RC4 40/128',
   'RC4 56/128',
   'RC4 64/128',
-  'RC4 128/128',
-  'Triple DES 168'
+  'RC4 128/128'#,
+  # 'Triple DES 168'
 )
 Foreach ($insecureCipher in $insecureCiphers) {
   $key = (Get-Item HKLM:\).OpenSubKey('SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers', $true).CreateSubKey($insecureCipher)
@@ -103,6 +103,10 @@ Foreach ($insecureCipher in $insecureCiphers) {
 # - 3DES: It is recommended to disable these in near future. This is the last cipher supported by Windows XP.
 # - Windows Vista and before 'Triple DES 168' was named 'Triple DES 168/168' per https://support.microsoft.com/en-us/kb/245030
 $secureCiphers = @(
+  'AES 128/128',
+  'AES 256/256',
+  'RC4 40/128',
+  'Triple DES 168'
 )
 Foreach ($secureCipher in $secureCiphers) {
 }
