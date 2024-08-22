@@ -77,6 +77,12 @@ https://www.encryptionconsulting.com/education-center/what-is-sha/
 https://cryptobook.nakov.com/cryptographic-hash-functions/secure-hash-algorithms
 https://csrc.nist.gov/projects/hash-functions
 
+### Testing
+I am still experimenting with how to test this script. I am building this script on Fedora 40, and I am installing a VM to run the script. I am also looking into alternate testing methods.
+
+#### Powershell WhatIf Parameter
+
+
 ### Sources:
 https://blog.gigamon.com/2021/07/14/what-is-tls-1-2-and-why-should-you-still-care/
 https://www.hass.de/content/setup-microsoft-windows-or-iis-ssl-perfect-forward-secrecy-and-tls-12

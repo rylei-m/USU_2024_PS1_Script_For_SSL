@@ -1,5 +1,7 @@
 # Win2012R2 and higher may use 'Get-CimInstance -Class Win32_OperatingSystem' as 'Get-WmiObject' is deprecated in Powershell 6.2+. Win2008R2 does not support 'Get-CimInstance'.
 
+
+
 try {
   $os = Get-CimInstance -Class Win32_OperatingSystem
 } catch {
@@ -188,7 +190,11 @@ if (Test-Path 'HKLM:\SOFTWARE\Wow6432Node') {
 
 # TODO: Verify if hotfix KB3140245 is installed.
 
-if ([System.Version]$file_version_winhttp_dll -lt [System.Version]"6.1.7601.23375" -or [System.Version]$file_version_webio_dll -lt [System.Version]"6.1.7601.23375") {
+if (
+[System.Version]$file_version_winhttp_dll -lt [System.Version]"6.1.7601.23375" -or
+        [System.Version]$file_version_webio_dll -lt [System.Version]"6.1.7601.23375"
+) {
+
 } else {
 
   if (Test-Path 'HKLM:\SOFTWARE\Wow6432Node') {
