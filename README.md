@@ -18,12 +18,12 @@ A Gigamon article by Dan Daniels provides a brief statement on why this script i
 TLS is a cryptographic protocol designed to provide communication security over a computer network. 
 Aims to provide security, privacy, and authentication. For security and consistency purposes we want to upgrade to at least TLS 1.2 but ideally version 1.3. However, some devices are incompatible with version 1.3 so we will continue support for 1.2. 
 
-### About TLS 1.2
+#### About TLS 1.2
 TLS 1.2, released in 2008, was developed with security and performance in mind. It remained the industry standard until yje release of 1.3 in 2018. TLS 1.2 is still functioning. However, it contains obsolete cipher suites that are vulnerable to security attacks.
 
 https://blog.gigamon.com/2021/07/14/what-is-tls-1-2-and-why-should-you-still-care/
 
-### About TLS 1.3
+#### About TLS 1.3
 TLS 1.3, released in August 2018, has been widely adopted and is considered the strongest and safest version of the TLS protocol to date. It is supported by major browsers and operating systems, and is recommended for use in secure communication protocols.
 - Elimination of obsolete cryptographic algorithms
 - Enhanced security over older versions

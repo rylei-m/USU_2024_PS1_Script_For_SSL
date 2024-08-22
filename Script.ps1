@@ -1,4 +1,5 @@
 # Win2012R2 and higher may use 'Get-CimInstance -Class Win32_OperatingSystem' as 'Get-WmiObject' is deprecated in Powershell 6.2+. Win2008R2 does not support 'Get-CimInstance'.
+
 try {
   $os = Get-CimInstance -Class Win32_OperatingSystem
 } catch {
@@ -35,7 +36,6 @@ Write-Host 'SSL 3.0 Disabled'
 # Windows XP with IE6/7. Without SSL 3.0 enabled, there is no protocol available
 # for these people to fall back. Safer shopping certifications may require that
 # you disable SSLv3.
-
 
 # Disable TLS 1.0 for client and server SCHANNEL communications
 New-Item 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server' -Force | Out-Null
@@ -91,6 +91,7 @@ $insecureCiphers = @(
   # 'RC4 128/128'#,
   # 'Triple DES 168'
 )
+
 Foreach ($insecureCipher in $insecureCiphers) {
   $key = (Get-Item HKLM:\).OpenSubKey('SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers', $true).CreateSubKey($insecureCipher)
   $key.SetValue('Enabled', 0, 'DWord')
@@ -111,6 +112,7 @@ $secureCiphers = @(
   'RC4 128/128',
   'Triple DES 168'
 )
+
 Foreach ($secureCipher in $secureCiphers) {
   $key = (Get-Item HKLM:\).OpenSubKey('SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers', $true).CreateSubKey($secureCipher)
   New-ItemProperty -path "HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers\$secureCipher" -name 'Enabled' -value '0xffffffff' -PropertyType 'DWord' -Force | Out-Null
@@ -143,6 +145,7 @@ $secureKeyExchangeAlgorithms = @(
 )
 
 Foreach ($secureKeyExchangeAlgorithm in $secureKeyExchangeAlgorithms) {
+
 }
 
 # Microsoft Security Advisory 3174644 - Updated Support for Diffie-Hellman Key Exchange
@@ -168,6 +171,7 @@ if ([System.Version]$os.Version -lt [System.Version]'10.0') {
 # https://cloudblogs.microsoft.com/microsoftsecure/2017/09/07/new-iis-functionality-to-help-identify-weak-tls-usage/
 
 if (Test-Path 'HKLM:\SOFTWARE\Wow6432Node') {
+
 }
 
 # DefaultSecureProtocols Value	Decimal value  Protocol enabled
