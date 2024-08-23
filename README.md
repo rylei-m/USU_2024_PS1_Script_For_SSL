@@ -77,6 +77,16 @@ https://www.encryptionconsulting.com/education-center/what-is-sha/
 https://cryptobook.nakov.com/cryptographic-hash-functions/secure-hash-algorithms
 https://csrc.nist.gov/projects/hash-functions
 
+### Key Exchange Algorithms
+KEAs are cryptographic protocols used to securely establish a shared secret key between two or more parties over an insecure communication channel.
+- Diffie-Hellman Key Exchange: A secure key exchange method first introduced in 1976. It relies on discrete logarithms in a finite field. 
+- Elliptic Curve Diffie-Hellman (ECDH): A variant of Diffie-Hellman that uses elliptic curves for key exchange.
+- RSA: An exchange that uses asymmetric cryptography.
+
+Key Exchange Vulnerabilities:
+- Man-in-the-Middle Attacks
+- Key Exchange Protocol Vulnerabilities
+
 ### Testing
 I am still experimenting with how to test this script. I am building this script on Fedora 40, and I am installing a VM to run the script. I am also looking into alternate testing methods.
 

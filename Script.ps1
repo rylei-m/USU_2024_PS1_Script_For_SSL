@@ -144,6 +144,9 @@ Foreach ($secureHash in $secureHashes) {
 # TODO: Set KeyExchangeAlgorithms configuration.
 New-Item 'HKLM:SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\KeyExchangeAlgorithms' -Force | Out-Null
 $secureKeyExchangeAlgorithms = @(
+  'Diffie-Hellman',
+  'ECDH',
+  'PKCS'
 )
 
 Foreach ($secureKeyExchangeAlgorithm in $secureKeyExchangeAlgorithms) {
