@@ -87,6 +87,11 @@ Key Exchange Vulnerabilities:
 - Man-in-the-Middle Attacks
 - Key Exchange Protocol Vulnerabilities
 
+https://www.jscape.com/blog/key-exchange
+https://www.geeksforgeeks.org/implementation-diffie-hellman-algorithm/
+https://bluegoatcyber.com/blog/defining-key-exchange-challenges-with-encryption/
+https://en.wikipedia.org/wiki/Key_exchange
+
 ### Testing
 I am still experimenting with how to test this script. I am building this script on Fedora 40, and I am installing a VM to run the script. I am also looking into alternate testing methods.
 

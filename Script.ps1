@@ -150,7 +150,10 @@ $secureKeyExchangeAlgorithms = @(
 )
 
 Foreach ($secureKeyExchangeAlgorithm in $secureKeyExchangeAlgorithms) {
-
+  $key = (Get-Item HKLM:\).OpenSubKey('SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\KeyExchangeAlgorithms', $true).CreateSubKey($secureKeyExchangeAlgorithm)
+  New-ItemProperty -path "HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\KeyExchangeAlgorithms\$secureKeyExchangeAlgorithm" -name 'Enabled' -value '0xffffffff' -PropertyType 'DWord' -Force | Out-Null
+  $key.close()
+  Write-Host "KeyExchangeAlgorithm $secureKeyExchangeAlgorithm has been enabled."
 }
 
 # Microsoft Security Advisory 3174644 - Updated Support for Diffie-Hellman Key Exchange
