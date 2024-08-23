@@ -87,6 +87,10 @@ Key Exchange Vulnerabilities:
 - Man-in-the-Middle Attacks
 - Key Exchange Protocol Vulnerabilities
 
+Microsoft Issued Security Advisory: 3174644
+- Updated Support for Diffie-Hellman Key Exchange
+- https://docs.microsoft.com/en-us/security-updates/SecurityAdvisories/2016/3174644
+
 https://www.jscape.com/blog/key-exchange
 https://www.geeksforgeeks.org/implementation-diffie-hellman-algorithm/
 https://bluegoatcyber.com/blog/defining-key-exchange-challenges-with-encryption/
