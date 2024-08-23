@@ -32,8 +32,8 @@ TLS 1.3, released in August 2018, has been widely adopted and is considered the 
 - Improved privacy through minimal cleartext protocol bits on the wire
 - Content length hiding enabled by minimal cleartext protocol bits
 
-https://www.a10networks.com/glossary/key-differences-between-tls-1-2-and-tls-1-3/
-https://www.microsoft.com/en-us/security/blog/2020/08/20/taking-transport-layer-security-tls-to-the-next-level-with-tls-1-3/
+https://www.a10networks.com/glossary/key-differences-between-tls-1-2-and-tls-1-3/ \
+https://www.microsoft.com/en-us/security/blog/2020/08/20/taking-transport-layer-security-tls-to-the-next-level-with-tls-1-3/ \
 https://www.appviewx.com/blogs/why-is-tls-1-3-better-and-safer-than-tls-1-2/
 
 ### Unified Hello Removal
@@ -54,9 +54,9 @@ https://en.wikipedia.org/wiki/Private_Communications_Technology
 - CBC mode (without GCM): The CBC encryption algorithm, used in TLS 1.0, SSL 3.0, and lower, is vulnerable to plain-text attacks and the BEAST attack.
 - Export ciphers: Ciphers used for export from the United States in the 1990s, now considered insecure due to their weaknesses and vulnerabilities.
 
-https://zofixer.com/what-is-insecure-ssl-insecure-cipher-suite-vulnerability/
-https://developers.cloudflare.com/ssl/edge-certificates/additional-options/cipher-suites/recommendations/
-https://docs.datadoghq.com/code_analysis/static_analysis_rules/go-security/tls-cipher/
+https://zofixer.com/what-is-insecure-ssl-insecure-cipher-suite-vulnerability/ \
+https://developers.cloudflare.com/ssl/edge-certificates/additional-options/cipher-suites/recommendations/ \
+https://docs.datadoghq.com/code_analysis/static_analysis_rules/go-security/tls-cipher/ \
 https://pleasantpasswords.com/info/pleasant-password-server/f-best-practices/secure-and-harden-your-server-environment/encryption-protocols-and-ciphers
 
 ### Secure Ciphers Install
@@ -64,17 +64,17 @@ https://pleasantpasswords.com/info/pleasant-password-server/f-best-practices/sec
 - RC4: Insecure Cipher but Required for Legacy Users
 - 3DES: Insecure Cipher, only supported Cipher by Windows XP
 
-https://www.kiteworks.com/risk-compliance-glossary/aes-256-encryption/
+https://www.kiteworks.com/risk-compliance-glossary/aes-256-encryption/ \
 https://www.geeksforgeeks.org/advanced-encryption-standard-aes/
 
 ### Secure Hashes
 Secure Hashes, also known as Cryptographic Hash Functions, are algorithms that take variable-length input data and produce fixed-length, unique digital message digests.
 - SHA-2: A family of hashes including SHA-224, SHA-256, SHA-384, and SHA-512. Considered Secure except against length extension attacks. 
 
-https://en.wikipedia.org/wiki/Cryptographic_hash_function
-https://brilliant.org/wiki/secure-hashing-algorithms/
-https://www.encryptionconsulting.com/education-center/what-is-sha/
-https://cryptobook.nakov.com/cryptographic-hash-functions/secure-hash-algorithms
+https://en.wikipedia.org/wiki/Cryptographic_hash_function \
+https://brilliant.org/wiki/secure-hashing-algorithms/ \
+https://www.encryptionconsulting.com/education-center/what-is-sha/ \
+https://cryptobook.nakov.com/cryptographic-hash-functions/secure-hash-algorithms \
 https://csrc.nist.gov/projects/hash-functions
 
 ### Key Exchange Algorithms
@@ -91,9 +91,9 @@ Microsoft Issued Security Advisory: 3174644
 - Updated Support for Diffie-Hellman Key Exchange
 - https://docs.microsoft.com/en-us/security-updates/SecurityAdvisories/2016/3174644
 
-https://www.jscape.com/blog/key-exchange
-https://www.geeksforgeeks.org/implementation-diffie-hellman-algorithm/
-https://bluegoatcyber.com/blog/defining-key-exchange-challenges-with-encryption/
+https://www.jscape.com/blog/key-exchange \
+https://www.geeksforgeeks.org/implementation-diffie-hellman-algorithm/ \
+https://bluegoatcyber.com/blog/defining-key-exchange-challenges-with-encryption/ \
 https://en.wikipedia.org/wiki/Key_exchange
 
 ### Testing
@@ -103,8 +103,8 @@ I am still experimenting with how to test this script. I am building this script
 
 
 ### Sources:
-https://blog.gigamon.com/2021/07/14/what-is-tls-1-2-and-why-should-you-still-care/
-https://www.hass.de/content/setup-microsoft-windows-or-iis-ssl-perfect-forward-secrecy-and-tls-12
-https://help.defense.com/en/articles/6302795-ssl-version-2-and-3-protocol-detection-windows-vulnerability
-https://nvd.nist.gov/vuln/detail/CVE-2024-6387
+https://blog.gigamon.com/2021/07/14/what-is-tls-1-2-and-why-should-you-still-care/ \
+https://www.hass.de/content/setup-microsoft-windows-or-iis-ssl-perfect-forward-secrecy-and-tls-12 \
+https://help.defense.com/en/articles/6302795-ssl-version-2-and-3-protocol-detection-windows-vulnerability \
+https://nvd.nist.gov/vuln/detail/CVE-2024-6387 \
 https://blog.qualys.com/vulnerabilities-threat-research/2024/07/01/regresshion-remote-unauthenticated-code-execution-vulnerability-in-openssh-server
