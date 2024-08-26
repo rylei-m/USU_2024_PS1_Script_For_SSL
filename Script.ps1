@@ -249,6 +249,9 @@ $cipherSuitesAsString = [string]::join(',', $cipherSuitesOrder)
 
 # One user reported this key does not exists on Windows 2012R2. Cannot repro myself on a brand new Windows 2012R2 core machine. Adding this just to be save.
 
+New-Item 'HKLM:\SOFTWARE\Policies\Microsoft\Cryptography\Configuration\SSL\00010002' -ErrorAction SilentlyContinue
+New-ItemProperty -path 'HKLM:\SOFTWARE\Policies\Microsoft\Cryptography\Configuration\SSL\00010002' -name 'Functions' -value $cipherSuitesAsString -PropertyType 'String' -Force | Out-Null
+
 # Exchange Server TLS guidance Part 2: Enabling TLS 1.2+ and Identifying Clients Not Using It
 # https://blogs.technet.microsoft.com/exchange/2018/04/02/exchange-server-tls-guidance-part-2-enabling-tls-1-2-and-identifying-clients-not-using-it/
 # New IIS functionality to help identify weak TLS usage
