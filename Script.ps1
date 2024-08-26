@@ -258,6 +258,11 @@ if (Test-Path 'HKLM:\SOFTWARE\Wow6432Node') {
 # 0x00000800                             2048  Enable TLS 1.2 by default
 # 0x00002000                             8192  Enable TLS 1.3 by default
 
+$defaultSecureProtocols = @(
+  '2048',
+  '8192'
+)
+$defaultSecureProtocolsSum = ($defaultSecureProtocols | Measure-Object -Sum).Sum
 
 # TODO: Update to enable TLS 1.2+ as a default secure protocols in WinHTTP in Windows
 # https://support.microsoft.com/en-us/help/3140245/update-to-enable-tls-1-1-and-tls-1-2-as-a-default-secure-protocols-in

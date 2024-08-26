@@ -136,6 +136,26 @@ Evolving requirements and new security vulnerabilities in TLS 1.0 incentivise di
 https://learn.microsoft.com/en-us/security/engineering/solving-tls1-problem \
 https://stackoverflow.com/questions/36265534/invoke-webrequest-ssl-fails
 
+## Default Secure Protocols
+- TLS 1.2: Enabled by default in Windows 8/Windows Server 2012 and higher.
+- TLS 1.1: Not enabled by default in earlier versions of Windows (Windows 7, Windows Server 2012), but can be 
+configured manually.
+- SSL 3.0 and TLS 1.0: Enabled by default in earlier versions of Windows (Windows 7, Windows Server 2012), but it’s 
+recommended to disable them due to security concerns.
+
+
+- DefaultSecureProtocols Value	Decimal value  Protocol enabled
+- 0x00000008 -                               8  Enable SSL 2.0 by default
+- 0x00000020  -                             32  Enable SSL 3.0 by default
+- 0x00000080   -                           128  Enable TLS 1.0 by default
+- 0x00000200    -                          512  Enable TLS 1.1 by default
+- 0x00000800     -                        2048  Enable TLS 1.2 by default
+- 0x00002000      -                       8192  Enable TLS 1.3 by default
+
+https://knowledge.digicert.com/solution/enable-tls-1-2-as-default-protocols-in-winhttp-windows-2008-and-2012-standard-server
+https://support.laserfiche.com/kb/1013919/raw
+https://superuser.com/questions/1080317/how-to-set-tls-protocols-as-default-after-applying-kb3140245
+
 ### Testing
 I am still experimenting with how to test this script. I am building this script on Fedora 40, and I am installing a VM 
 to run the script. I am also looking into alternate testing methods.
