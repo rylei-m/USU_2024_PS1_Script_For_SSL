@@ -173,6 +173,21 @@ https://www.altium.com/documentation/knowledge-base/altium-designer/update-gives
 I am still experimenting with how to test this script. I am building this script on Fedora 40, and I am installing a 
 Windows 10 VM to run the script. I am also looking into alternate testing methods.
 
+#### Sources to Get SSL 2.0 and 3.0 on VM
+The early releases of Firefox would have supported SSL 3.0
+- https://ftp.mozilla.org/pub/firefox/releases/
+
+IIS Crypto is a free tool that gives administrators the ability to enable or disable protocols, ciphers, hashes and key 
+exchange algorithms on Windows Server 2008, 2012, 2016, 2019 and 2022. It also lets you reorder SSL/TLS cipher suites 
+offered by IIS, change advanced settings, implement Best Practices with a single click, create custom templates and test 
+your website.
+
+- https://www.nartac.com/Products/IISCrypto
+
+In your configuration file(s), find the entry "SSLProtocol" and modify it to look like: \
+SSLProtocol all -SSLv2 -SSLv3 -TLSv1 -TLSv1.1
+- https://support.globalsign.com/ssl/general-ssl/how-enable-or-disable-ssl-and-tls-versions
+
 ### Extra Sources:
 https://blog.gigamon.com/2021/07/14/what-is-tls-1-2-and-why-should-you-still-care/ \
 https://www.hass.de/content/setup-microsoft-windows-or-iis-ssl-perfect-forward-secrecy-and-tls-12 \
