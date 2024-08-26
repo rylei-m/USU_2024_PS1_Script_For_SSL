@@ -170,6 +170,8 @@ New-ItemProperty -path "HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders
 
 # TODO: Set cipher suites order as secure as possible (Enables Perfect Forward Secrecy).
 
+
+# TODO: Edit list to ensure no Security Vunerabilities across all OS. Edit List for Deprecated
 if ([System.Version]$os.Version -lt [System.Version]'10.0') {
   Write-Host 'Use cipher suites order for Windows 2008/2008R2/2012/2012R2.'
   $cipherSuitesOrder = @(
@@ -201,7 +203,7 @@ if ([System.Version]$os.Version -lt [System.Version]'10.0') {
     'TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA_P521',
     'TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA_P384',
     'TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA_P256',
-    # 2012R2
+    # Windows 2012R2
     'TLS_RSA_WITH_AES_256_GCM_SHA384',
     'TLS_RSA_WITH_AES_128_GCM_SHA256',
     'TLS_RSA_WITH_AES_256_CBC_SHA256',
@@ -227,6 +229,7 @@ if ([System.Version]$os.Version -lt [System.Version]'10.0') {
     'TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA'
   )
 } else {
+  # Most Securer Group
   Write-Host 'Use cipher suites order for Windows 11/2022 and later.'
   $cipherSuitesOrder = @(
     'TLS_AES_256_GCM_SHA384',
