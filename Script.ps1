@@ -1,7 +1,3 @@
-# Win2012R2 and higher may use 'Get-CimInstance -Class Win32_OperatingSystem' as 'Get-WmiObject' is deprecated in Powershell 6.2+. Win2008R2 does not support 'Get-CimInstance'.
-
-
-
 try {
   $os = Get-CimInstance -Class Win32_OperatingSystem
 } catch {
@@ -16,7 +12,7 @@ Set-ItemProperty HKLM:\SOFTWARE\Microsoft\PolicyManager\current\device\Settings 
 
 # TODO: Disable PCT 1.0
 
-# Disable SSL 2.0 (PCI Compliance)
+# Disable SSL 2.0
 New-Item 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Server' -Force | Out-Null
 New-ItemProperty -path 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Server' -name Enabled -value 0 -PropertyType 'DWord' -Force | Out-Null
 New-ItemProperty -path 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Server' -name 'DisabledByDefault' -value 1 -PropertyType 'DWord' -Force | Out-Null
@@ -25,7 +21,7 @@ New-ItemProperty -path 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders
 New-ItemProperty -path 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Client' -name 'DisabledByDefault' -value 1 -PropertyType 'DWord' -Force | Out-Null
 Write-Host 'SSL 2.0 Disabled'
 
-# Disable SSL 3.0 (PCI Compliance) and enable "Poodle" protection
+# Disable SSL 3.0 and enable Poodle protection
 New-Item 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server' -Force | Out-Null
 New-ItemProperty -path 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server' -name Enabled -value 0 -PropertyType 'DWord' -Force | Out-Null
 New-ItemProperty -path 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server' -name 'DisabledByDefault' -value 1 -PropertyType 'DWord' -Force | Out-Null
@@ -33,11 +29,6 @@ New-Item 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Prot
 New-ItemProperty -path 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Client' -name Enabled -value 0 -PropertyType 'DWord' -Force | Out-Null
 New-ItemProperty -path 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Client' -name 'DisabledByDefault' -value 1 -PropertyType 'DWord' -Force | Out-Null
 Write-Host 'SSL 3.0 Disabled'
-
-# NOTE: If you disable SSL 3.0 the you may lock out some people still using
-# Windows XP with IE6/7. Without SSL 3.0 enabled, there is no protocol available
-# for these people to fall back. Safer shopping certifications may require that
-# you disable SSLv3.
 
 # Disable TLS 1.0 for client and server SCHANNEL communications
 New-Item 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server' -Force | Out-Null
@@ -64,7 +55,7 @@ New-ItemProperty -path 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders
 
 
 if ([System.Version]$os.Version -lt [System.Version]'10.0.20348') {
-  # Microsoft integrated TLS 1.3 as a preview in Windows 10, but this code seems to be unstable and is causing malfunctions.
+  # ISSUE: Microsoft integrated TLS 1.3 as a preview in Windows 10, but this code seems to be unstable and is causing malfunctions.
   Remove-Item -path 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.3' -Recurse -ErrorAction SilentlyContinue
   Write-Host 'TLS 1.3 has been disabled for Windows 10/2016/2019.'
 } else {
@@ -80,7 +71,6 @@ if ([System.Version]$os.Version -lt [System.Version]'10.0.20348') {
 
 # TODO: Re-create the ciphers key.
 
-# Disable insecure/weak ciphers.
 $insecureCiphers = @(
   'DES 56/56',
   'NULL',
@@ -94,6 +84,7 @@ $insecureCiphers = @(
   # 'Triple DES 168'
 )
 
+# Disable insecure ciphers.
 Foreach ($insecureCipher in $insecureCiphers) {
   $key = (Get-Item HKLM:\).OpenSubKey('SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers', $true).CreateSubKey($insecureCipher)
   $key.SetValue('Enabled', 0, 'DWord')
@@ -101,10 +92,6 @@ Foreach ($insecureCipher in $insecureCiphers) {
   Write-Host "Weak cipher $insecureCipher has been disabled."
 }
 
-# TODO: Enable new secure ciphers.
-# - RC4: It is recommended to disable RC4, but you may lock out WinXP/IE8 if you enforce this. This is a requirement for FIPS 140-2.
-# - 3DES: It is recommended to disable these in near future. This is the last cipher supported by Windows XP.
-# - Windows Vista and before 'Triple DES 168' was named 'Triple DES 168/168' per https://support.microsoft.com/en-us/kb/245030
 $secureCiphers = @(
   'AES 128/128',
   'AES 256/256',
@@ -115,6 +102,7 @@ $secureCiphers = @(
   'Triple DES 168'
 )
 
+# Enable new secure ciphers
 Foreach ($secureCipher in $secureCiphers) {
   $key = (Get-Item HKLM:\).OpenSubKey('SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers', $true).CreateSubKey($secureCipher)
   New-ItemProperty -path "HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers\$secureCipher" -name 'Enabled' -value '0xffffffff' -PropertyType 'DWord' -Force | Out-Null
@@ -122,7 +110,7 @@ Foreach ($secureCipher in $secureCiphers) {
   Write-Host "Strong cipher $secureCipher has been enabled."
 }
 
-# TODO: Set hashes configuration.
+# hashes configuration.
 New-Item 'HKLM:SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Hashes' -Force | Out-Null
 New-Item 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Hashes\MD5' -Force | Out-Null
 New-ItemProperty -path 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Hashes\MD5' -name Enabled -value 0 -PropertyType 'DWord' -Force | Out-Null
@@ -162,16 +150,12 @@ New-ItemProperty -path "HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders
 
 New-ItemProperty -path "HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\KeyExchangeAlgorithms\PKCS" -name 'ClientMinKeyBitLength' -value '2048' -PropertyType 'DWord' -Force | Out-Null
 
-# Microsoft Security Advisory 3174644 - Updated Support for Diffie-Hellman Key Exchange
-# https://docs.microsoft.com/en-us/security-updates/SecurityAdvisories/2016/3174644
-
-# https://support.microsoft.com/en-us/help/3174644/microsoft-security-advisory-updated-support-for-diffie-hellman-key-exc
 New-ItemProperty -path "HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\KeyExchangeAlgorithms\PKCS" -name 'ClientMinKeyBitLength' -value '2048' -PropertyType 'DWord' -Force | Out-Null
 
 # TODO: Set cipher suites order as secure as possible (Enables Perfect Forward Secrecy).
 
 
-# TODO: Edit list to ensure no Security Vunerabilities across all OS. Edit List for Deprecated
+# TODO: Edit for Security Vunerabilities and Deprecated
 if ([System.Version]$os.Version -lt [System.Version]'10.0') {
   Write-Host 'Use cipher suites order for Windows 2008/2008R2/2012/2012R2.'
   $cipherSuitesOrder = @(
@@ -229,7 +213,7 @@ if ([System.Version]$os.Version -lt [System.Version]'10.0') {
     'TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA'
   )
 } else {
-  # Most Securer Group
+  # Most Secure Group
   Write-Host 'Use cipher suites order for Windows 11/2022 and later.'
   $cipherSuitesOrder = @(
     'TLS_AES_256_GCM_SHA384',
@@ -250,15 +234,8 @@ if ([System.Version]$os.Version -lt [System.Version]'10.0') {
 
 $cipherSuitesAsString = [string]::join(',', $cipherSuitesOrder)
 
-# One user reported this key does not exists on Windows 2012R2. Cannot repro myself on a brand new Windows 2012R2 core machine. Adding this just to be save.
-
 New-Item 'HKLM:\SOFTWARE\Policies\Microsoft\Cryptography\Configuration\SSL\00010002' -ErrorAction SilentlyContinue
 New-ItemProperty -path 'HKLM:\SOFTWARE\Policies\Microsoft\Cryptography\Configuration\SSL\00010002' -name 'Functions' -value $cipherSuitesAsString -PropertyType 'String' -Force | Out-Null
-
-# Exchange Server TLS guidance Part 2: Enabling TLS 1.2+ and Identifying Clients Not Using It
-# https://blogs.technet.microsoft.com/exchange/2018/04/02/exchange-server-tls-guidance-part-2-enabling-tls-1-2-and-identifying-clients-not-using-it/
-# New IIS functionality to help identify weak TLS usage
-# https://cloudblogs.microsoft.com/microsoftsecure/2017/09/07/new-iis-functionality-to-help-identify-weak-tls-usage/
 
 Write-Host 'Enable TLS 1.2 for .NET 3.5 and .NET 4.x'
 New-ItemProperty -path "HKLM:\SOFTWARE\Microsoft\.NETFramework\v2.0.50727" -name 'SystemDefaultTlsVersions' -value 1 -PropertyType 'DWord' -Force | Out-Null
