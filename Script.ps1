@@ -282,5 +282,9 @@ Write-Host 'WinHTTP: Minimum system requirements are met.'
     New-ItemProperty -path 'HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Internet Settings\WinHttp' -name 'DefaultSecureProtocols' -value $defaultSecureProtocolsSum -PropertyType 'DWord' -Force | Out-Null  }
 }
 
+Write-Host 'Windows Internet Explorer: Activate TLS 1.2 only.'
+New-ItemProperty -path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings' -name 'SecureProtocols' -value $defaultSecureProtocolsSum -PropertyType 'DWord' -Force | Out-Null
+New-ItemProperty -path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings' -name 'SecureProtocols' -value $defaultSecureProtocolsSum -PropertyType 'DWord' -Force | Out-Null
+ 
 Write-Host -ForegroundColor Red 'A computer restart is required to apply settings. Restart computer now?'
 Restart-Computer -Force -Confirm
