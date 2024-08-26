@@ -1,5 +1,5 @@
 # PS1 Script for SSH
-### Powershell Script For Disabling SSL 2.0 and 3.0 and Enabling TLS 1.2/1.3
+## Powershell Script For Disabling SSL 2.0 and 3.0 and Enabling TLS 1.2/1.3
 
 Script created to disable SSL Version 2.0 and 3.0 and Enable the most viable version of TLS. 
 
@@ -129,14 +129,14 @@ Cipher Suites are a combination of the following:
 https://venafi.com/blog/what-are-cipher-suites/ \
 https://www.keyfactor.com/blog/cipher-suites-explained/
 
-## Disabling TLS 1.0 and Adding 1.2/1.3
+### Disabling TLS 1.0 and Adding 1.2/1.3
 TLS 1.0 is a security protocol first defined in 1999 for establishing encryption channels over computer networks. 
 Evolving requirements and new security vulnerabilities in TLS 1.0 incentivise disabling TLS 1.0 and moving to 1.2 or 1.3.
 
 https://learn.microsoft.com/en-us/security/engineering/solving-tls1-problem \
 https://stackoverflow.com/questions/36265534/invoke-webrequest-ssl-fails
 
-## Default Secure Protocols
+### Default Secure Protocols
 - TLS 1.2: Enabled by default in Windows 8/Windows Server 2012 and higher.
 - TLS 1.1: Not enabled by default in earlier versions of Windows (Windows 7, Windows Server 2012), but can be 
 configured manually.
@@ -156,8 +156,7 @@ https://knowledge.digicert.com/solution/enable-tls-1-2-as-default-protocols-in-w
 https://support.laserfiche.com/kb/1013919/raw \
 https://superuser.com/questions/1080317/how-to-set-tls-protocols-as-default-after-applying-kb3140245
 
-
-## About Windows Update KB3140245
+### About Windows Update KB3140245
 Applications and services that are written by using WinHTTP for SSL connections that use the 
 WINHTTP_OPTION_SECURE_PROTOCOLS flag can't use TLS 1.1 or TLS 1.2 protocols. This is because the definition of this flag 
 doesn't include these applications and services.
@@ -171,13 +170,10 @@ https://support.microsoft.com/en-us/topic/update-to-enable-tls-1-1-and-tls-1-2-a
 https://www.altium.com/documentation/knowledge-base/altium-designer/update-gives-error-this-application-requires-windows-hotfix-kb3140245?srsltid=AfmBOoqR6KtPjKb0qscR54o1VOx1g8L-wgZMxunOi0Mo63dlZySRgacZ
 
 ### Testing
-I am still experimenting with how to test this script. I am building this script on Fedora 40, and I am installing a VM 
-to run the script. I am also looking into alternate testing methods.
+I am still experimenting with how to test this script. I am building this script on Fedora 40, and I am installing a 
+Windows 10 VM to run the script. I am also looking into alternate testing methods.
 
-#### Powershell WhatIf Parameter
-
-
-### Sources:
+### Extra Sources:
 https://blog.gigamon.com/2021/07/14/what-is-tls-1-2-and-why-should-you-still-care/ \
 https://www.hass.de/content/setup-microsoft-windows-or-iis-ssl-perfect-forward-secrecy-and-tls-12 \
 https://help.defense.com/en/articles/6302795-ssl-version-2-and-3-protocol-detection-windows-vulnerability \

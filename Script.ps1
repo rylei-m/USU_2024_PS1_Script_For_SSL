@@ -264,8 +264,7 @@ $defaultSecureProtocols = @(
 )
 $defaultSecureProtocolsSum = ($defaultSecureProtocols | Measure-Object -Sum).Sum
 
-# TODO: Update to enable TLS 1.2+ as a default secure protocols in WinHTTP in Windows
-# https://support.microsoft.com/en-us/help/3140245/update-to-enable-tls-1-1-and-tls-1-2-as-a-default-secure-protocols-in
+# Update to enable TLS 1.2+ as a default secure protocol
 
 # Windows Hotfix KB3140245 installation
 $file_version_winhttp_dll = (Get-Item $env:windir\System32\winhttp.dll).VersionInfo | % {("{0}.{1}.{2}.{3}" -f $_.ProductMajorPart,$_.ProductMinorPart,$_.ProductBuildPart,$_.ProductPrivatePart)}
@@ -285,6 +284,6 @@ Write-Host 'WinHTTP: Minimum system requirements are met.'
 Write-Host 'Windows Internet Explorer: Activate TLS 1.2 only.'
 New-ItemProperty -path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings' -name 'SecureProtocols' -value $defaultSecureProtocolsSum -PropertyType 'DWord' -Force | Out-Null
 New-ItemProperty -path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings' -name 'SecureProtocols' -value $defaultSecureProtocolsSum -PropertyType 'DWord' -Force | Out-Null
- 
+
 Write-Host -ForegroundColor Red 'A computer restart is required to apply settings. Restart computer now?'
 Restart-Computer -Force -Confirm
