@@ -88,7 +88,7 @@ Key Exchange Vulnerabilities:
 - Key Exchange Protocol Vulnerabilities
 
 Microsoft Issued Security Advisory: 3174644
-- Updated Support for Diffie-Hellman Key Exchange
+- Updated Support for Diffie-Hellman Key Exchange Fix From 2016, May Need Revisit in the Future
 - https://docs.microsoft.com/en-us/security-updates/SecurityAdvisories/2016/3174644
 
 https://www.jscape.com/blog/key-exchange \

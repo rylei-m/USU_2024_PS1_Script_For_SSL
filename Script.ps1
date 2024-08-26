@@ -166,6 +166,7 @@ New-ItemProperty -path "HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders
 # https://docs.microsoft.com/en-us/security-updates/SecurityAdvisories/2016/3174644
 
 # https://support.microsoft.com/en-us/help/3174644/microsoft-security-advisory-updated-support-for-diffie-hellman-key-exc
+New-ItemProperty -path "HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\KeyExchangeAlgorithms\PKCS" -name 'ClientMinKeyBitLength' -value '2048' -PropertyType 'DWord' -Force | Out-Null
 
 # TODO: Set cipher suites order as secure as possible (Enables Perfect Forward Secrecy).
 
