@@ -267,18 +267,19 @@ $defaultSecureProtocolsSum = ($defaultSecureProtocols | Measure-Object -Sum).Sum
 # TODO: Update to enable TLS 1.2+ as a default secure protocols in WinHTTP in Windows
 # https://support.microsoft.com/en-us/help/3140245/update-to-enable-tls-1-1-and-tls-1-2-as-a-default-secure-protocols-in
 
-# TODO: Verify if hotfix KB3140245 is installed.
-
-if (
-[System.Version]$file_version_winhttp_dll -lt [System.Version]"6.1.7601.23375" -or
-        [System.Version]$file_version_webio_dll -lt [System.Version]"6.1.7601.23375"
-) {
-
+# Windows Hotfix KB3140245 installation
+$file_version_winhttp_dll = (Get-Item $env:windir\System32\winhttp.dll).VersionInfo | % {("{0}.{1}.{2}.{3}" -f $_.ProductMajorPart,$_.ProductMinorPart,$_.ProductBuildPart,$_.ProductPrivatePart)}
+$file_version_webio_dll = (Get-Item $env:windir\System32\Webio.dll).VersionInfo | % {("{0}.{1}.{2}.{3}" -f $_.ProductMajorPart,$_.ProductMinorPart,$_.ProductBuildPart,$_.ProductPrivatePart)}
+if ([System.Version]$file_version_winhttp_dll -lt [System.Version]"6.1.7601.23375" -or [System.Version]$file_version_webio_dll -lt [System.Version]"6.1.7601.23375") {
+    Write-Host 'WinHTTP: Cannot enable TLS 1.2+. Please see https://support.microsoft.com/en-us/help/3140245/update-to-enable-tls-1-1-and-tls-1-2-as-a-default-secure-protocols-in for system requirements.'
 } else {
-
+Write-Host 'WinHTTP: Minimum system requirements are met.'
+  Write-Host 'WinHTTP: Activate TLS 1.2+ only.'
+  New-ItemProperty -path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\WinHttp' -name 'DefaultSecureProtocols' -value $defaultSecureProtocolsSum -PropertyType 'DWord' -Force | Out-Null
   if (Test-Path 'HKLM:\SOFTWARE\Wow6432Node') {
-    # WinHttp key seems missing in Windows 2019 for unknown reasons.
-  }
+    # for missing winHttp key in windows 2019
+    New-Item 'HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Internet Settings\WinHttp' -ErrorAction SilentlyContinue | Out-Null
+    New-ItemProperty -path 'HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Internet Settings\WinHttp' -name 'DefaultSecureProtocols' -value $defaultSecureProtocolsSum -PropertyType 'DWord' -Force | Out-Null  }
 }
 
 Write-Host -ForegroundColor Red 'A computer restart is required to apply settings. Restart computer now?'

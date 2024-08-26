@@ -152,9 +152,23 @@ recommended to disable them due to security concerns.
 - 0x00000800     -                        2048  Enable TLS 1.2 by default
 - 0x00002000      -                       8192  Enable TLS 1.3 by default
 
-https://knowledge.digicert.com/solution/enable-tls-1-2-as-default-protocols-in-winhttp-windows-2008-and-2012-standard-server
-https://support.laserfiche.com/kb/1013919/raw
+https://knowledge.digicert.com/solution/enable-tls-1-2-as-default-protocols-in-winhttp-windows-2008-and-2012-standard-server \
+https://support.laserfiche.com/kb/1013919/raw \
 https://superuser.com/questions/1080317/how-to-set-tls-protocols-as-default-after-applying-kb3140245
+
+
+## About Windows Update KB3140245
+Applications and services that are written by using WinHTTP for SSL connections that use the 
+WINHTTP_OPTION_SECURE_PROTOCOLS flag can't use TLS 1.1 or TLS 1.2 protocols. This is because the definition of this flag 
+doesn't include these applications and services.
+
+This update adds support for DefaultSecureProtocols registry entry that allows the system administrator to specify which 
+SSL protocols should be used when the WINHTTP_OPTION_SECURE_PROTOCOLS flag is used.
+
+To apply this update, the DefaultSecureProtocols registry subkey must be added.
+
+https://support.microsoft.com/en-us/topic/update-to-enable-tls-1-1-and-tls-1-2-as-default-secure-protocols-in-winhttp-in-windows-c4bd73d2-31d7-761e-0178-11268bb10392 \
+https://www.altium.com/documentation/knowledge-base/altium-designer/update-gives-error-this-application-requires-windows-hotfix-kb3140245?srsltid=AfmBOoqR6KtPjKb0qscR54o1VOx1g8L-wgZMxunOi0Mo63dlZySRgacZ
 
 ### Testing
 I am still experimenting with how to test this script. I am building this script on Fedora 40, and I am installing a VM 
