@@ -105,8 +105,14 @@ Cipher Suites are a combination of the following:
 - Bulk Encryption Algorithms
 - Message Authentication Code Algorithms
 
-https://venafi.com/blog/what-are-cipher-suites/
+https://venafi.com/blog/what-are-cipher-suites/ \
 https://www.keyfactor.com/blog/cipher-suites-explained/
+
+## Disabling TLS 1.0 and Adding 1.2/1.3
+TLS 1.0 is a security protocol first defined in 1999 for establishing encryption channels over computer networks. Evolving requirements and new security vulnerabilities in TLS 1.0 incentivise disabling TLS 1.0 and moving to 1.2 or 1.3.
+
+https://learn.microsoft.com/en-us/security/engineering/solving-tls1-problem \
+https://stackoverflow.com/questions/36265534/invoke-webrequest-ssl-fails
 
 ### Testing
 I am still experimenting with how to test this script. I am building this script on Fedora 40, and I am installing a VM to run the script. I am also looking into alternate testing methods.
