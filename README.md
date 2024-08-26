@@ -3,9 +3,18 @@
 
 Script created to disable SSL Version 2.0 and 3.0 and Enable the most viable version of TLS. 
 
-Open SSL 2.0 and 3.0 are affected by several cryptographic flaws that can become harmful to your computer and network if exploited. Attacks may use these flaws to conduct man-in-the-middle attacks or to decrypt communications between affected services and clients. 
+Open SSL 2.0 and 3.0 are affected by several cryptographic flaws that can become harmful to your computer and network if
+exploited. Attacks may use these flaws to conduct man-in-the-middle attacks or to decrypt communications between
+affected services and clients. 
 
-A Gigamon article by Dan Daniels provides a brief statement on why this script is necessary. "Back in 1995, when the internet was still figuring itself out, Netscape decided to address growing concerns over internet security by creating a form of encryption that would allow data to travel safely without the risk of being intercepted — Secure Socket Layers. SSL 1.0 was flawed, and never saw general release, but SSL 2.0 followed shortly afterward, and was then superseded by the much improved SSL 3.0. This final SSL version became the standard for internet encryption for nearly two decades. Unfortunately, as technology improved, so did the capabilities of various online threat actors. In late 2014, the Google Security Team detected a major security flaw in SSL 3.0, necessitating a new approach to communication encryption. TLS was the solution." (Daniels)
+A Gigamon article by Dan Daniels provides a brief statement on why this script is necessary. "Back in 1995, when the 
+internet was still figuring itself out, Netscape decided to address growing concerns over internet security by creating 
+a form of encryption that would allow data to travel safely without the risk of being intercepted — Secure Socket Layers. 
+SSL 1.0 was flawed, and never saw general release, but SSL 2.0 followed shortly afterward, and was then superseded by 
+the much improved SSL 3.0. This final SSL version became the standard for internet encryption for nearly two decades. 
+Unfortunately, as technology improved, so did the capabilities of various online threat actors. In late 2014, the Google 
+Security Team detected a major security flaw in SSL 3.0, necessitating a new approach to communication encryption. TLS 
+was the solution." (Daniels)
 
 ### Vulnerabilities Include:
 - RegreSSHion
@@ -16,15 +25,22 @@ A Gigamon article by Dan Daniels provides a brief statement on why this script i
 
 ### Transport Layer Security (TLS)
 TLS is a cryptographic protocol designed to provide communication security over a computer network. 
-Aims to provide security, privacy, and authentication. For security and consistency purposes we want to upgrade to at least TLS 1.2 but ideally version 1.3. However, some devices are incompatible with version 1.3 so we will continue support for 1.2. 
+Aims to provide security, privacy, and authentication. For security and consistency purposes we want to upgrade to at 
+least TLS 1.2 but ideally version 1.3. However, some devices are incompatible with version 1.3 so we will continue 
+support for 1.2. 
 
 #### About TLS 1.2
-TLS 1.2, released in 2008, was developed with security and performance in mind. It remained the industry standard until yje release of 1.3 in 2018. TLS 1.2 is still functioning. However, it contains obsolete cipher suites that are vulnerable to security attacks.
+TLS 1.2, released in 2008, was developed with security and performance in mind. It remained the industry standard until 
+the release of 1.3 in 2018. TLS 1.2 is still functioning. However, it contains obsolete cipher suites that are 
+vulnerable to security attacks.
 
 https://blog.gigamon.com/2021/07/14/what-is-tls-1-2-and-why-should-you-still-care/
 
 #### About TLS 1.3
-TLS 1.3, released in August 2018, has been widely adopted and is considered the strongest and safest version of the TLS protocol to date. It is supported by major browsers and operating systems, and is recommended for use in secure communication protocols.
+TLS 1.3, released in August 2018, has been widely adopted and is considered the strongest and safest version of the TLS 
+protocol to date. It is supported by major browsers and operating systems, and is recommended for use in secure 
+communication protocols.
+
 - Elimination of obsolete cryptographic algorithms
 - Enhanced security over older versions
 - Encryption of as much of the handshake as possible
@@ -37,12 +53,14 @@ https://www.microsoft.com/en-us/security/blog/2020/08/20/taking-transport-layer-
 https://www.appviewx.com/blogs/why-is-tls-1-3-better-and-safer-than-tls-1-2/
 
 ### Unified Hello Removal
-Unified hello is a message formater that came out with SSL 2.0. With the removal of SSH 2.0 it is no longer necessary and is being removed for storage space optimization. 
+Unified hello is a message formater that came out with SSL 2.0. With the removal of SSH 2.0 it is no longer necessary 
+and is being removed for storage space optimization. 
 
 https://security.stackexchange.com/questions/59460/what-is-multi-protocol-unified-hello-and-what-are-the-impacts-of-disabling-ena
 
 ### PTC 1.0 Removal
-Private Communications Technology (PTC) 1.0 is a protocol developed by Microsoft in the mid-1990s to address security flaws in SSL 2.0. With the removal of SSL 2.0 PTC is no longer necessary.
+Private Communications Technology (PTC) 1.0 is a protocol developed by Microsoft in the mid-1990s to address security 
+flaws in SSL 2.0. With the removal of SSL 2.0 PTC is no longer necessary.
 
 https://en.wikipedia.org/wiki/Private_Communications_Technology
 
@@ -68,7 +86,8 @@ https://www.kiteworks.com/risk-compliance-glossary/aes-256-encryption/ \
 https://www.geeksforgeeks.org/advanced-encryption-standard-aes/
 
 ### Secure Hashes
-Secure Hashes, also known as Cryptographic Hash Functions, are algorithms that take variable-length input data and produce fixed-length, unique digital message digests.
+Secure Hashes, also known as Cryptographic Hash Functions, are algorithms that take variable-length input data and 
+produce fixed-length, unique digital message digests.
 - SHA-2: A family of hashes including SHA-224, SHA-256, SHA-384, and SHA-512. Considered Secure except against length extension attacks. 
 
 https://en.wikipedia.org/wiki/Cryptographic_hash_function \
@@ -78,7 +97,8 @@ https://cryptobook.nakov.com/cryptographic-hash-functions/secure-hash-algorithms
 https://csrc.nist.gov/projects/hash-functions
 
 ### Key Exchange Algorithms
-KEAs are cryptographic protocols used to securely establish a shared secret key between two or more parties over an insecure communication channel.
+KEAs are cryptographic protocols used to securely establish a shared secret key between two or more parties over an 
+insecure communication channel.
 - Diffie-Hellman Key Exchange: A secure key exchange method first introduced in 1976. It relies on discrete logarithms in a finite field. 
 - Elliptic Curve Diffie-Hellman (ECDH): A variant of Diffie-Hellman that uses elliptic curves for key exchange.
 - RSA: An exchange that uses asymmetric cryptography.
@@ -97,7 +117,8 @@ https://bluegoatcyber.com/blog/defining-key-exchange-challenges-with-encryption/
 https://en.wikipedia.org/wiki/Key_exchange
 
 ### Cipher Suites
-Cipher Suites are sets of instructions on how to secure a network through SSL or TLS. They provide information about how to communicate secure data when using network protocols. 
+Cipher Suites are sets of instructions on how to secure a network through SSL or TLS. They provide information about how 
+to communicate secure data when using network protocols. 
 
 Cipher Suites are a combination of the following:
 - Key Exchange Algorithms
@@ -109,13 +130,15 @@ https://venafi.com/blog/what-are-cipher-suites/ \
 https://www.keyfactor.com/blog/cipher-suites-explained/
 
 ## Disabling TLS 1.0 and Adding 1.2/1.3
-TLS 1.0 is a security protocol first defined in 1999 for establishing encryption channels over computer networks. Evolving requirements and new security vulnerabilities in TLS 1.0 incentivise disabling TLS 1.0 and moving to 1.2 or 1.3.
+TLS 1.0 is a security protocol first defined in 1999 for establishing encryption channels over computer networks. 
+Evolving requirements and new security vulnerabilities in TLS 1.0 incentivise disabling TLS 1.0 and moving to 1.2 or 1.3.
 
 https://learn.microsoft.com/en-us/security/engineering/solving-tls1-problem \
 https://stackoverflow.com/questions/36265534/invoke-webrequest-ssl-fails
 
 ### Testing
-I am still experimenting with how to test this script. I am building this script on Fedora 40, and I am installing a VM to run the script. I am also looking into alternate testing methods.
+I am still experimenting with how to test this script. I am building this script on Fedora 40, and I am installing a VM 
+to run the script. I am also looking into alternate testing methods.
 
 #### Powershell WhatIf Parameter
 
