@@ -16,11 +16,11 @@ Main Policies:
 Reference About.md for More Information
 
 ## Set-ExecutionPolicy cmdlet
-Example Usage: > Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+Example Usage: `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`
 
 ## Bypass Policy
 Bypassing: This Policy Allows Scripts to Run Without Restriction. Typically Used for Temporary or Emergency Situations. 
 This Should Be Used With Caution to Avoid Security Issues.
 
-Example Usage With Bypass: > powershell.exe -ExecutionPolicy Bypass -File "C:\Path\To\YourScript.ps1"
+Example Usage With Bypass: `powershell.exe -ExecutionPolicy Bypass -File "C:\Path\To\YourScript.ps1"`
 
