@@ -79,8 +79,9 @@ foreach ($hash in $insecureHashes) {
         }
         catch {
             Write-Warning "Failed to remove hash $hash from $regPath"
+        }
     } else {
-            Write-Host "$hash hash path does not exist."
+        Write-Host "$hash hash path does not exist."
     }
 }
 
