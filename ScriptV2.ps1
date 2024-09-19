@@ -53,11 +53,16 @@ $insecureCiphers = @(
 
 foreach ($cipher in $insecureCiphers) {
     $regPath = "HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers\$cipher"
-    try {
-        Remove-Item -Path $regPath -Recurse -Force | Out-Null
-        Write-Host "$cipher cipher has been removed."
-    } catch {
-        Write-Warning "Failed to remove cipher $cipher from $regPath"
+    if (Test-Path $regPath) {
+        try {
+            Remove-Item -Path $regPath -Recurse -Force | Out-Null
+            Write-Host "$cipher cipher has been removed."
+        }
+        catch {
+            Write-Warning "Failed to remove cipher $cipher from $regPath"
+        }
+    } else {
+            Write-Host "$cipher cipher path does not exist."
     }
 }
 
@@ -67,11 +72,15 @@ $insecureHashes = @(
 
 foreach ($hash in $insecureHashes) {
     $regPath = "HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Hashes\$hash"
-    try {
-        Remove-Item -Path $regPath -Recurse -Force | Out-Null
-        Write-Host "$hash hash has been removed."
-    } catch {
-        Write-Warning "Failed to remove hash $hash from $regPath"
+    if (Test-Path $regPath) {
+        try {
+            Remove-Item -Path $regPath -Recurse -Force | Out-Null
+            Write-Host "$hash hash has been removed."
+        }
+        catch {
+            Write-Warning "Failed to remove hash $hash from $regPath"
+    } else {
+            Write-Host "$hash hash path does not exist."
     }
 }
 
@@ -85,7 +94,7 @@ if (Test-Path -Path $ngcPath) {
     }
 }
 
-Optional: Disable old PCT protocols
+# Optional: Disable old PCT protocols
 $oldProtocols = @(
     'PCT 1.0'
 )
