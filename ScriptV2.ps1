@@ -90,8 +90,8 @@ if (Test-Path -Path $ngcPath) {
     try {
         Remove-Item -Path $ngcPath -Recurse -Force
         Write-Host "NGC folder has been removed."
-    } catch {
-      Write-Warning "Access denied to remove NGC folder at $ngcPath. Run PowerShell as administrator."
+    } catch [System.UnauthorizedAccessException] {
+        Write-Warning "Access denied to remove NGC folder at $ngcPath. Run PowerShell as administrator."
     } catch {
         Write-Warning "Failed to remove NGC folder at $ngcPath"
     }
