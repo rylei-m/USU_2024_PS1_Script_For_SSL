@@ -1,4 +1,4 @@
-# Check OS version
+
 try {
     $os = Get-CimInstance -Class Win32_OperatingSystem
 } catch {
