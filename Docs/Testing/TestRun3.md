@@ -4,7 +4,8 @@ At C:\Users\rymin\Downloads\Script.ps1:9 char:1 \
 \+ Set-ItemProperty HKLM:\SOFTWARE\Microsoft\PolicyManager\current\devic ... \
 \+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \
 &nbsp;&nbsp;&nbsp;&nbsp; + CategoryInfo          : ObjectNotFound: (HKLM:\SOFTWARE\...device\Settings:String) [Set-ItemProperty], ItemNotFoundException \
-&nbsp;&nbsp;&nbsp;&nbsp; + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.SetItemPropertyCommand \
+&nbsp;&nbsp;&nbsp;&nbsp; + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.SetItemPropertyCommand 
+
 SSL 2.0 Disabled \
 SSL 3.0 Disabled \
 Out-Null : A positional parameter cannot be found that accepts argument 'New-ItemProperty'. \
@@ -12,7 +13,8 @@ At C:\Users\rymin\Downloads\Script.ps1:50 char:112 \
 \+ ... r' -Force | Out-Null New-ItemProperty -path 'HKLM:\SYSTEM\CurrentCont ... \
 \+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \
 &nbsp;&nbsp;&nbsp;&nbsp; + CategoryInfo          : InvalidArgument: (:) [Out-Null], ParameterBindingException \
-&nbsp;&nbsp;&nbsp;&nbsp; + FullyQualifiedErrorId : PositionalParameterNotFound,Microsoft.PowerShell.Commands.OutNullCommand \
+&nbsp;&nbsp;&nbsp;&nbsp; + FullyQualifiedErrorId : PositionalParameterNotFound,Microsoft.PowerShell.Commands.OutNullCommand
+
 TLS 1.3 has been disabled for Windows 10/2016/2019. \
 Weak cipher DES 56/56 has been disabled. \
 Weak cipher NULL has been disabled. \
