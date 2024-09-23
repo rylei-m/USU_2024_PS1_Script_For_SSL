@@ -1,4 +1,3 @@
-
 try {
     $os = Get-CimInstance -Class Win32_OperatingSystem
 } catch {
@@ -114,10 +113,5 @@ foreach ($protocol in $oldProtocols) {
 
     Write-Host "$protocol has been disabled."
 }
-
-# Optional: Re-create ciphers key if needed (example placeholder)
-# $ciphersRegPath = "HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers"
-# New-Item -Path $ciphersRegPath -Force | Out-Null
-# Write-Host "Ciphers key has been re-created."
 
 Write-Host "Script execution completed. Please restart your system to apply changes."
