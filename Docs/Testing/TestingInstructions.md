@@ -17,10 +17,12 @@ your environment.
 more robust error checks if needed.
 
 ## Running the Script:
-
-- Copy the Script: Copy the script into a .ps1 file (e.g., Configure-Security.ps1).
-- Execute the Script: Run the script in PowerShell by navigating to the directory where your script is located and 
-executing it with powershell
+- Download the Script
+- Open PowerShell As an Administrator
+- Run the following command:
+```
+powershell.exe -ExecutionPolicy Bypass -File "C:\Your\Path\To\File"
+```
 
 ## Verify the Changes:
 
