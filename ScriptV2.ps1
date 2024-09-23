@@ -92,7 +92,6 @@ foreach ($protocol in $oldProtocols) {
     $regPathClient = "HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\$protocol\Client"
     $regPathServer = "HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\$protocol\Server"
 
-    # Create registry paths if not exist
     Set-RegistryValue -Path $regPathClient -Name 'Enabled' -Value 0
     Set-RegistryValue -Path $regPathServer -Name 'Enabled' -Value 0
 
