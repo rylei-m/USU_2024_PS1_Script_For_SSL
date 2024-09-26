@@ -1,4 +1,4 @@
-# PS1 Script for SSH
+# PS1 Script for SSL
 ## Powershell Script For Disabling SSL 2.0 and 3.0 and Enabling TLS 1.2/1.3
 
 Script created to disable SSL Version 2.0 and 3.0 and Enable the most viable version of TLS. 
