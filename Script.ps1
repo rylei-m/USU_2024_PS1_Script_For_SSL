@@ -276,7 +276,6 @@ Write-Host 'WinHTTP: Minimum system requirements are met.'
   Write-Host 'WinHTTP: Activate TLS 1.2+ only.'
   New-ItemProperty -path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\WinHttp' -name 'DefaultSecureProtocols' -value $defaultSecureProtocolsSum -PropertyType 'DWord' -Force | Out-Null
   if (Test-Path 'HKLM:\SOFTWARE\Wow6432Node') {
-    # for missing winHttp key in windows 2019
     New-Item 'HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Internet Settings\WinHttp' -ErrorAction SilentlyContinue | Out-Null
     New-ItemProperty -path 'HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Internet Settings\WinHttp' -name 'DefaultSecureProtocols' -value $defaultSecureProtocolsSum -PropertyType 'DWord' -Force | Out-Null  }
 }
