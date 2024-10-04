@@ -99,3 +99,6 @@ foreach ($protocol in $oldProtocols) {
 }
 
 Write-Host "Script execution completed. Please restart your system to apply changes."
+
+Write-Host -ForegroundColor Red 'A computer restart is required to apply settings. Restart computer now?'
+Restart-Computer -Force -Confirm
