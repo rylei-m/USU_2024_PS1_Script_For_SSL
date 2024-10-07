@@ -33,9 +33,9 @@ foreach ($protocol in $protocols.Keys) {
     $regPathServer = "HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\$protocol\Server"
 
     Set-RegistryValue -Path $regPathClient -Name 'Enabled' -Value ([int][bool]$enabled)
-    Set-RegistryValue -Path $regPathClient -Name 'DisabledByDefault' -Value ([int](-not $enabled))
+    Set-RegistryValue -Path $regPathClient -Name 'DisabledByDefault' -Value (0)
     Set-RegistryValue -Path $regPathServer -Name 'Enabled' -Value ([int][bool]$enabled)
-    Set-RegistryValue -Path $regPathServer -Name 'DisabledByDefault' -Value ([int](-not $enabled))
+    Set-RegistryValue -Path $regPathServer -Name 'DisabledByDefault' -Value (0)
 
     Write-Host "$protocol has been $(if ($enabled) { 'enabled' } else { 'disabled' })"
 }
