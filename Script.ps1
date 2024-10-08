@@ -23,7 +23,7 @@ $protocols = @{
     'SSL 3.0' = $false
     'TLS 1.0' = $false
     'TLS 1.1' = $false
-    'TLS 1.2' = $true
+    'TLS 1.2' = if ([System.Version]$os.Version -lt [System.Version]'10.0.20348') { $true } else { $false }
     'TLS 1.3' = if ([System.Version]$os.Version -ge [System.Version]'10.0.20348') { $true } else { $false }
 }
 
@@ -32,10 +32,10 @@ foreach ($protocol in $protocols.Keys) {
     $regPathClient = "HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\$protocol\Client"
     $regPathServer = "HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\$protocol\Server"
 
-    Set-RegistryValue -Path $regPathClient -Name 'Enabled' -Value (1)
-    Set-RegistryValue -Path $regPathClient -Name 'DisabledByDefault' -Value (0)
-    Set-RegistryValue -Path $regPathServer -Name 'Enabled' -Value (1)
-    Set-RegistryValue -Path $regPathServer -Name 'DisabledByDefault' -Value (0)
+    Set-RegistryValue -Path $regPathClient -Name 'Enabled' -Value (4)
+    Set-RegistryValue -Path $regPathClient -Name 'Disabled' -Value (3)
+    Set-RegistryValue -Path $regPathServer -Name 'Enabled' -Value (2)
+    Set-RegistryValue -Path $regPathServer -Name 'Disabled' -Value (5)
 
     Write-Host "$protocol has been $(if ($enabled) { 'enabled' } else { 'disabled' })"
 }
@@ -92,8 +92,8 @@ foreach ($protocol in $oldProtocols) {
     $regPathClient = "HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\$protocol\Client"
     $regPathServer = "HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\$protocol\Server"
 
-    Set-RegistryValue -Path $regPathClient -Name 'Disabled' -Value 1
-    Set-RegistryValue -Path $regPathServer -Name 'Enabled' -Value 0
+    Set-RegistryValue -Path $regPathClient -Name 'Disabled' -Value 0
+    Set-RegistryValue -Path $regPathServer -Name 'Disabled' -Value 0
 
     Write-Host "$protocol has been disabled."
 }
