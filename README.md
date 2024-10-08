@@ -16,6 +16,12 @@ Unfortunately, as technology improved, so did the capabilities of various online
 Security Team detected a major security flaw in SSL 3.0, necessitating a new approach to communication encryption. TLS 
 was the solution." (Daniels)
 
+### Command to Run the Script:
+```
+powershell.exe -ExecutionPolicy Bypass -File "C:\Your\Path\To\File"
+```
+For more information on running/testing see [TestingInstructions.md](/home/rylei/Documentation/USU_2024_PS1_Script_For_SSH/Docs/Testing/TestingInstructions.md)
+
 ### Vulnerabilities Include:
 - RegreSSHion
 - Insecure Padding Scheme with CBC Ciphers
