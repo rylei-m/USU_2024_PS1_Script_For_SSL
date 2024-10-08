@@ -103,7 +103,7 @@ foreach ($protocol in $oldProtocols) {
 
 Write-Host "Script execution completed. Please restart your system to apply changes."
 
-$restartPrompt = Read-Host -ForegroundColor Red 'A computer restart is required to apply settings. Restart computer now?'
+$restartPrompt = Read-Host 'A computer restart is required to apply settings. Restart computer now by pressing "Y"'
 if ($restartPrompt -eq 'Y') {
-    Restart-Computer -Force -Confirm
+    Restart-Computer -Force
 }
