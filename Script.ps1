@@ -12,9 +12,9 @@ function Set-RegistryValue {
     )
     try {
         New-Item -Path $Path -Force | Out-Null
-        Set-ItemProperty -Path $Path -Name $Name -Value $Value | Out-Null
+        Set-ItemProperty -Path $Path -Name $Name -Value $Value -Type DWord -Force | Out-Null
     } catch {
-        Write-Warning "Failed to set registry value at $Path\$Name: $_"
+        Write-Warning "Failed to set registry value at $Path\$Name"
     }
 }
 
