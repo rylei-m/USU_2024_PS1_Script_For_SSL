@@ -12,9 +12,9 @@ function Set-RegistryValue {
     )
     try {
         New-Item -Path $Path -Force | Out-Null
-        Set-ItemProperty -Path $Path -Name $Name -Value $Value -Type DWord -Force | Out-Null
+        Set-ItemProperty -Path $Path -Name $Name -Value $Value | Out-Null
     } catch {
-        Write-Warning "Failed to set registry value at $Path\$Name"
+        Write-Warning "Failed to set registry value at $Path\$Name: $_"
     }
 }
 
@@ -32,11 +32,14 @@ foreach ($protocol in $protocols.Keys) {
     $regPathClient = "HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\$protocol\Client"
     $regPathServer = "HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\$protocol\Server"
 
-    Set-RegistryValue -Path $regPathClient -Name 'Enabled' -Value (4)
-    Set-RegistryValue -Path $regPathClient -Name 'Disabled' -Value (3)
-    Set-RegistryValue -Path $regPathServer -Name 'Enabled' -Value (2)
-    Set-RegistryValue -Path $regPathServer -Name 'Disabled' -Value (5)
+    if ($protocols[$protocol] == $false) {
+        Set-RegistryValue -Path $regPathClient -Name 'Disabled' -Value (3)
+        Set-RegistryValue -Path $regPathServer -Name 'Disabled' -Value (5)
 
+    } else {
+        Set-RegistryValue -Path $regPathClient -Name 'Enabled' -Value (4)
+        Set-RegistryValue -Path $regPathServer -Name 'Enabled' -Value (2)
+    }
     Write-Host "$protocol has been $(if ($enabled) { 'enabled' } else { 'disabled' })"
 }
 
@@ -100,5 +103,7 @@ foreach ($protocol in $oldProtocols) {
 
 Write-Host "Script execution completed. Please restart your system to apply changes."
 
-Write-Host -ForegroundColor Red 'A computer restart is required to apply settings. Restart computer now?'
-Restart-Computer -Force -Confirm
+$restartPrompt = Read-Host -ForegroundColor Red 'A computer restart is required to apply settings. Restart computer now?'
+if ($restartPrompt -eq 'Y') {
+    Restart-Computer -Force -Confirm
+}
