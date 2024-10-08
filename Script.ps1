@@ -92,7 +92,7 @@ foreach ($protocol in $oldProtocols) {
     $regPathClient = "HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\$protocol\Client"
     $regPathServer = "HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\$protocol\Server"
 
-    Set-RegistryValue -Path $regPathClient -Name 'Enabled' -Value 0
+    Set-RegistryValue -Path $regPathClient -Name 'Disabled' -Value 1
     Set-RegistryValue -Path $regPathServer -Name 'Enabled' -Value 0
 
     Write-Host "$protocol has been disabled."
