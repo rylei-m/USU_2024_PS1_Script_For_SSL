@@ -32,7 +32,7 @@ foreach ($protocol in $protocols.Keys) {
     $regPathClient = "HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\$protocol\Client"
     $regPathServer = "HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\$protocol\Server"
 
-    if ($protocols[$protocol] == $false) {
+    if ($enabled -eq $false) {
         Set-RegistryValue -Path $regPathClient -Name 'Disabled' -Value (3)
         Set-RegistryValue -Path $regPathServer -Name 'Disabled' -Value (5)
 
