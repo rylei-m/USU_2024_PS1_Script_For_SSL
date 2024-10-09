@@ -175,10 +175,6 @@ To apply this update, the DefaultSecureProtocols registry subkey must be added.
 https://support.microsoft.com/en-us/topic/update-to-enable-tls-1-1-and-tls-1-2-as-default-secure-protocols-in-winhttp-in-windows-c4bd73d2-31d7-761e-0178-11268bb10392 \
 https://www.altium.com/documentation/knowledge-base/altium-designer/update-gives-error-this-application-requires-windows-hotfix-kb3140245?srsltid=AfmBOoqR6KtPjKb0qscR54o1VOx1g8L-wgZMxunOi0Mo63dlZySRgacZ
 
-### Testing
-I am still experimenting with how to test this script. I am building this script on Fedora 40, and I am installing a 
-Windows 10 VM to run the script. I am also looking into alternate testing methods.
-
 #### Sources to Get SSL 2.0 and 3.0 on VM
 The early releases of Firefox would have supported SSL 3.0
 - https://ftp.mozilla.org/pub/firefox/releases/
