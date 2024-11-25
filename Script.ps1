@@ -101,6 +101,9 @@ foreach ($protocol in $oldProtocols) {
     Write-Host "$protocol has been disabled."
 }
 
+Set-SmbClientConfiguration -RequireSecuritySignature $false -Force
+Set-SmbServerConfiguration -RequireSecuritySignature $false -Force
+
 Write-Host "Script execution completed. Please restart your system to apply changes."
 
 $restartPrompt = Read-Host 'A computer restart is required to apply settings. Restart computer now by pressing "Y"'
